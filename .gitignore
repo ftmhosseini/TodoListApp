@@ -1,0 +1,9 @@
+.env
+/node_modules
+
+/client/node_modules
+/client/build
+/client/cypress
+/client/.gitignore
+/client/cypress.config.js
+/client/README.md
