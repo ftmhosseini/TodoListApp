@@ -1,36 +1,36 @@
 import express from 'express'
 // const express = require('express')
 // Note: Using ES Modules (import) instead of CommonJS (require) for modern syntax
-import { getTodoList, getTodoItem, addTodoItem, updateTodoTask, deleteTodoItem } from '../controllers/taskController.js'
+import { getTodoItem, getTodoList, updateTodoTask, addTodoItem, deleteTodoItem } from '../controller/todoController.js';
 
-/** * task Router
+/** * task todoRouter
  * Handles all requests directed to /api/todos
  */
-const route = express.Router()
+const todoRoute = express.Router()
 /**
- * @route   GET /api/todos
+ * @todoRoute   GET /api/todos
  * @desc    Retrieve a list of all tasks
  */
-route.get('/', getTodoList)
+todoRoute.get('/', getTodoList)
 /**
- * @route   GET /api/todos/:id
+ * @todoRoute   GET /api/todos/:id
  * @desc    Get details for a single task by their unique ID
  */
-route.get('/:id', getTodoItem)
+todoRoute.get('/:id', getTodoItem)
 /**
- * @route   POST /api/todos
+ * @todoRoute   POST /api/todos
  * @desc    Register or create a new task
  */
-route.post('/', addTodoItem)
+todoRoute.post('/', addTodoItem)
 /**
- * @route   PUT /api/todos/:id
+ * @todoRoute   PUT /api/todos/:id
  * @desc    Update an existing task's full profile
  */
-route.put('/:id', updateTodoTask)
+todoRoute.put('/:id', updateTodoTask)
 /**
- * @route   DELETE /api/todos/:id
+ * @todoRoute   DELETE /api/todos/:id
  * @desc    Remove a task from the system
  */
-route.delete('/:id', deleteTodoItem)
+todoRoute.delete('/:id', deleteTodoItem)
 
-export default route;
+export default todoRoute;

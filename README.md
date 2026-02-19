@@ -31,7 +31,7 @@ A streamlined task management application built with **React** and **Node.js**. 
 
 ## 🛠️ Technical Stack
 
-- **Frontend**: React (Build files located in `/public`)
+- **Frontend**: React (Build files located in `/public` and original file located in `/client`)
 
 - **Backend**: Node.js + Express
 
