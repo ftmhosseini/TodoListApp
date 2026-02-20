@@ -17,9 +17,9 @@ services:
         value: ./database.sqlite 
 
   # 2. The Frontend (Static Site)
-  - type: static
+  - type: web
     name: TodoListAppFrontend
-    # runtime: static
+    runtime: static
     # plan: free
     # Note: If you use React, the build command is usually 'npm run build' 
     # and the publishPath is usually './build' or './dist'
