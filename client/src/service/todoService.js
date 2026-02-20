@@ -1,13 +1,18 @@
 import axios from "axios";
 // Implementation of CRUD operation for todoContext
+// Render will provide REACT_APP_API_URL via your render.yaml
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:8800";
 
+const api = axios.create({
+    baseURL: API_URL
+});
 /**
  * GET: Fetches the full list of todos from the server.
  * Fetches all tasks.
  */
 export const getTodos = async ()=> {
     try {
-        const res = await axios.get(`/api/todos/`);
+        const res = await api.get(`/api/todos/`);
         return res.data;
     } catch (error) {
         console.error("Fetch Todo List Error:", error);
@@ -28,7 +33,7 @@ export const getTodos = async ()=> {
  */
 export async function insertTodo(body) {    
     try {
-        const res = await axios.post(`/api/todos/`, body);
+        const res = await api.post(`/api/todos/`, body);
         return res.data;
     } catch (error) {
         console.error("Update Task Error:", error);
@@ -41,7 +46,7 @@ export async function insertTodo(body) {
  */
 export async function updateTodo(id, body) {
     try {
-        const res = await axios.put(`/api/todos/${id}`, body);
+        const res = await api.put(`/api/todos/${id}`, body);
         return res.data;
     } catch (error) {
         console.error("Update Task Error:", error);
@@ -54,7 +59,7 @@ export async function updateTodo(id, body) {
  */
 export async function getItem(id) {
     try {
-        const res = await axios.get(`/api/todos/${id}`);
+        const res = await api.get(`/api/todos/${id}`);
         console.log(res);
         
         return res.data;
@@ -69,7 +74,7 @@ export async function getItem(id) {
  */
 export async function deleteTodo(id) {
     try {
-        const res = await axios.delete(`/api/todos/${id}`);
+        const res = await api.delete(`/api/todos/${id}`);
         return res.data;
     } catch (error) {
         console.error("Update Task Error:", error);

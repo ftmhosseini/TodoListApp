@@ -7,3 +7,4 @@
 /client/.gitignore
 /client/cypress.config.js
 /client/README.md
+database.db

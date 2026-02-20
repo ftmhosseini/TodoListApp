@@ -6,7 +6,7 @@ import {open} from 'sqlite';
 export async function setupDB() {
     // Open the database file (it will be created if it doesn't exist)
     const db = await open({
-        filename: './database.db',
+        filename: './database.sqlite',
         driver: sqlite3.Database
     });
 
