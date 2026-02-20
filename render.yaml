@@ -5,7 +5,7 @@ services:
     name: TodoListApp
     runtime: node
     plan: free
-    region: ohio
+    region: Oregon
     buildCommand: npm install
     startCommand: node server.js
     envVars:

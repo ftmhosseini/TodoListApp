@@ -7,7 +7,7 @@ import todoRoute from './route/todoListRoute.js';
 dotenv.config();
 const server = express()
 server.use(cors())
-server.use(cors({ origin: 'https://simplerestapi-gjve.onrender.com' }));
+server.use(cors({ origin: 'https://todolistapp-e0iu.onrender.com/' }));
 server.use(express.urlencoded())
 server.use(express.json())
 
