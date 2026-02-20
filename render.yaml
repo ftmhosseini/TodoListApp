@@ -17,7 +17,7 @@ services:
         value: ./database.sqlite 
 
   # 2. The Frontend (Static Site)
-  - type: static
+  - type: web_static
     name: TodoListAppFrontend
     runtime: static
     plan: free
