@@ -36,7 +36,7 @@ async function startServer() {
     server.get(/.*/, (req, res) => {
         res.sendFile(path.join(__dirname, 'build', 'index.html'));
     });
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT || 8800;
     // Define HOST as '0.0.0.0' // Best for Docker/Render/Cloud
     // '127.0.0.1' or 'localhost' // Best for Browser
     const HOST = process.env.HOST || '127.0.0.1';
