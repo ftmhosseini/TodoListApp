@@ -59,9 +59,7 @@ export async function updateTodo(id, body) {
  */
 export async function getItem(id) {
     try {
-        const res = await api.get(`/api/todos/${id}`);
-        console.log(res);
-        
+        const res = await api.get(`/api/todos/${id}`);        
         return res.data;
     } catch (error) {
         console.error("Update Task Error:", error);

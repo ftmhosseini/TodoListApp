@@ -3,39 +3,48 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { setupDB } from './utilitiy/sqlite.js';
 import todoRoute from './route/todoListRoute.js';
-// import { getTodoItem, getTodoList, updateTodoTask, addTodoItem, deleteTodoItem } from './controller/todoController.js';
+
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 dotenv.config();
 const server = express()
+
+// Security/Middleware
 server.use(cors())
-server.use(cors({ origin: 'https://todolistapp-e0iu.onrender.com/' }));
 server.use(express.urlencoded())
 server.use(express.json())
 
 async function startServer() {
     const db = await setupDB();
-
-    // Attach db to req so controllers can access it
+    // const db = setupDB()
     server.use((req, res, next) => {
         req.db = db;
         next();
     });
-    server.use(express.static('public'))
+
+    // Static Files (CSS, JS, Images)
+    server.use(express.static(path.join(__dirname, 'build')));
+    
 
     // 2. API Routes
     server.use('/api/todos', todoRoute)
-    // server.get('/api/todos', getTodoList);
-    // server.get('/api/todos/:id', getTodoItem);
-    // server.post('/api/todos', addTodoItem);
-    // server.put('/api/todos/:id', updateTodoTask);
-    // server.delete('/api/todos/:id', deleteTodoItem);
-
-    // 1. Get the PORT from Render's environment, or fallback to 8800 for local dev
+    
+    server.get(/.*/, (req, res) => {
+        res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    });
     const PORT = process.env.PORT || 3000;
-    // 2. Define HOST as '0.0.0.0' (This fixes your previous ReferenceError!)
-    const HOST = '0.0.0.0';
+    // Define HOST as '0.0.0.0' // Best for Docker/Render/Cloud
+    // '127.0.0.1' or 'localhost' // Best for Browser
+    const HOST = process.env.HOST || '127.0.0.1';
 
-    // 3. Start the server
-    server.listen(PORT, () => console.log(`Server is running on http://${HOST}:${PORT}`));
+    // Start the server
+    server.listen(PORT, HOST, () => {
+        console.log(`Server running on ${HOST}:${PORT}`);
+    });
 }
 
 startServer().catch(err => console.error("Failed to start server:", err));

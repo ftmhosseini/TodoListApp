@@ -20,6 +20,7 @@ export const HomePage = () => {
         done: []
     };
 
+console.log(todoList);
 
     Array.from(todoList).forEach(todo => {
         const item = { id: todo.id.toString(), title: todo.title, context: todo.content };

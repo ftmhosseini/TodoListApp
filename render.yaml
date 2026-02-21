@@ -10,6 +10,8 @@ services:
     envVars:
       - key: PORT
         value: 3000
+      - key: HOST
+        value: 0.0.0.0
       - key: NODE_VERSION
         value: 22.22.0
       # You can define your DB path here if your code uses process.env.DB_PATH
